@@ -22,7 +22,7 @@ class Main {
     Main.loadPrompt();
   }
 
-  static int loadPrompt() throws IOException {
+  public static int loadPrompt() throws IOException {
     System.out.print( "Enter load: " );
       
     int load = Integer.parseInt(in.readLine());
@@ -34,4 +34,5 @@ class Main {
 
     return load;
   }
+
 }
