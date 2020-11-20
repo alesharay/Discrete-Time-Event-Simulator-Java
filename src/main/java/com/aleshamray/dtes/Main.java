@@ -1,4 +1,4 @@
-package com.alesha.m.ray.dtes;
+package com.aleshamray.dtes;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,25 +14,22 @@ import javax.print.PrintException;
  * @version: 1.3
  */
 
-
- 
 class Main {
-  public BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+  public static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-  public static void main( String[] args ) {
+  public static void main( String[] args ) throws IOException {
 
-    System.out.println( "\nHello, World!\n" );
-
+    Main.loadPrompt();
   }
 
-  int loadPrompt() throws IOException {
+  public static int loadPrompt() throws IOException {
     System.out.print( "Enter load: " );
       
     int load = Integer.parseInt(in.readLine());
 
     if( load == 0 ) {
       System.out.println( "Aborting due to invalid load! Please try again." );
-      return 0;
+      System.exit(0);
     }
 
     return load;
