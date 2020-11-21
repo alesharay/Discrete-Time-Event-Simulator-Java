@@ -9,7 +9,7 @@ public class SRTF extends Scheduler {
   /**
    * SRTF Constructor
    */
-  public SRTF {
+  public SRTF() {
     scheduling_algorithm = "SRTF";
     // TODO: Implement this
   }

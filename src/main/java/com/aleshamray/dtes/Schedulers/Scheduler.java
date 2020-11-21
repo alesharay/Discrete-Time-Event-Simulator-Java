@@ -44,4 +44,9 @@ public abstract class Scheduler {
     System.out.printf( "Average processes in ready queue: %f", average_processes_in_ready_queue );
     System.out.println();
   }
+
+  public static void clear_console() {  
+    System.out.print("\033[H\033[2J");  
+    System.out.flush();  
+ }
 }

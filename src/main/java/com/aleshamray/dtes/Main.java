@@ -1,15 +1,17 @@
 package com.aleshamray.dtes;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import com.aleshamray.dtes.Schedulers.*;
 
 public class Main {
+  public static final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-  public static void main( String[] args ) {
+  public static void main( String[] args )  {
     Simulator simulator = new Simulator();
-    Scheduler fcfs = new FCFS();
-    Scheduler rr = new FCFS();
-    Scheduler srtf = new FCFS();
 
-    simulator.run(fcfs);
+    simulator.prompt();
+
+    simulator.run( );
   }
 }
