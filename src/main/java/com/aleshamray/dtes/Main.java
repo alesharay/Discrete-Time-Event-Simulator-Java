@@ -1,38 +1,17 @@
 package com.aleshamray.dtes;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
+import com.aleshamray.dtes.Schedulers.*;
 
-import javax.print.PrintException;
+public class Main {
+  public static final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-/**
- * CS_4328 Operating Systems Discrete-Time Event Simulator
- * 
- * @author: Alesha Ray
- * @date: 11/8/2020
- * @version: 1.3
- */
+  public static void main( String[] args )  {
+    Simulator simulator = new Simulator();
 
-class Main {
-  public static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    simulator.prompt();
 
-  public static void main( String[] args ) throws IOException {
-
-    Main.loadPrompt();
+    simulator.run( );
   }
-
-  public static int loadPrompt() throws IOException {
-    System.out.print( "Enter load: " );
-      
-    int load = Integer.parseInt(in.readLine());
-
-    if( load == 0 ) {
-      System.out.println( "Aborting due to invalid load! Please try again." );
-      System.exit(0);
-    }
-
-    return load;
-  }
-
 }
