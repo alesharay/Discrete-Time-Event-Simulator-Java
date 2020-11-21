@@ -1,17 +1,18 @@
 package com.aleshamray.dtes.Schedulers;
 
+import java.util.Queue;
+
 /**
- * First-Come First-Serve Scheduling Algorithm
- * [non-preemptive - see slide4]
+ * First-Come First-Serve Scheduling Algorithm [non-preemptive - see slide4]
  */
 public class FCFS extends Scheduler {
-
+  private Queue event_queue;
   /** 
    * FCFS Constructor
    */
-  public FCFS() {
+  public FCFS( Queue event_queue ) {
     scheduling_algorithm = "FCFS";
-    // TODO: Implement this
+    this.event_queue = event_queue;
   }
 
 }

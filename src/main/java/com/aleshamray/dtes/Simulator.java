@@ -71,13 +71,13 @@ public class Simulator {
 
     switch( option ) {
       case 1:
-        scheduler = new FCFS();
+        scheduler = new FCFS( event_queue );
         break;
       case 2:
-        scheduler = new SRTF();
+        scheduler = new SRTF( event_queue );
         break;
       case 3:
-        scheduler = new RR( quantum );
+        scheduler = new RR( event_queue, quantum );
         break;
       default:
         break;
