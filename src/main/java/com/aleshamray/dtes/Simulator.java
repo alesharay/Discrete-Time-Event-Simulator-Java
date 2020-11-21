@@ -12,10 +12,11 @@ public class Simulator {
 
   private int option;
   private int load;
-  private int quantum;
 
   private float avg_arrival_rate;
   private float avg_service_time;
+  private float quantum;
+
 
   private Scheduler scheduler;
   private String simulator_state;
@@ -25,10 +26,10 @@ public class Simulator {
   public Simulator() {
     option = 0;
     load = 0;
-    quantum = 0;
 
     avg_arrival_rate = 0f;
     avg_service_time = 0f;
+    quantum = 0f;
 
     simulator_state = "ready";
     event_queue = new PriorityQueue<>();  
@@ -37,6 +38,7 @@ public class Simulator {
 
   public void prompt() {
     boolean valid_option_chosen = false;
+
 
     while( !valid_option_chosen ) {
       try{
@@ -53,7 +55,6 @@ public class Simulator {
           System.out.println( "Invalid option chosen. Please Try again!\n" ); 
           continue;
         }
-
         System.out.print( "\nAverage arrival rate: " );
         avg_arrival_rate = Float.parseFloat( in.readLine() );
 
@@ -61,14 +62,13 @@ public class Simulator {
         avg_service_time = Float.parseFloat( in.readLine() );
 
         System.out.print( "\nQuantum: " );
-        quantum = Integer.parseInt( in.readLine() );
-
+        quantum = Float.parseFloat( in.readLine() );
       } catch ( Exception e ) {
         clear_console();
         System.out.println( "Invalid option chosen. Please Try again!\n" );
       }
     }
-  
+
     switch( option ) {
       case 1:
         scheduler = new FCFS();
