@@ -12,9 +12,8 @@ public abstract class Scheduler {
 
   protected String scheduling_algorithm;
 
-  protected Queue job_queue;          // set of all processes in the system
-  protected Queue ready_queue;        // set of all processes residing in main memory, ready and waiting to execute
-  protected Queue device_queue;       // set of all processes waiting for an I/O device
+  protected Queue process_ready_queue;        // set of all processes residing in main memory, ready and waiting to execute
+
 
   public Scheduler() {
     average_turnaround_time = 0f;
@@ -24,9 +23,7 @@ public abstract class Scheduler {
 
     scheduling_algorithm = "";
 
-    job_queue = new LinkedList<>();
-    ready_queue = new LinkedList<>();
-    device_queue = new LinkedList<>();
+    process_ready_queue = new LinkedList<>();
   }
 
   public String get_algorithm() { return scheduling_algorithm; }
