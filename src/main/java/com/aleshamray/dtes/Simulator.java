@@ -9,18 +9,14 @@ import com.aleshamray.dtes.Schedulers.*;
 
 public class Simulator {
   protected final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-
   private int option;
   private int load;
-
   private float avg_arrival_rate;
   private float avg_service_time;
   private float quantum;
-
-
   private Scheduler scheduler;
   private String simulator_state;
-  private Queue event_queue;
+  private Queue<Event> event_queue;
   private long clock;
 
   public Simulator() {
@@ -33,7 +29,7 @@ public class Simulator {
 
     simulator_state = "ready";
     event_queue = new PriorityQueue<>();  
-    clock = System.currentTimeMillis() / 1000;
+    clock = 0;
   }
 
   public void prompt() {
@@ -58,7 +54,7 @@ public class Simulator {
         System.out.print( "\nAverage arrival rate: " );
         avg_arrival_rate = Float.parseFloat( in.readLine() );
 
-        System.out.print( "\nAverage service time: " );
+        System.out.print( "\nAverage service (burst) time: " );
         avg_service_time = Float.parseFloat( in.readLine() );
 
         System.out.print( "\nQuantum: " );
@@ -71,13 +67,13 @@ public class Simulator {
 
     switch( option ) {
       case 1:
-        scheduler = new FCFS( event_queue );
+        scheduler = new FCFS( event_queue, avg_service_time );
         break;
       case 2:
-        scheduler = new SRTF( event_queue );
+        scheduler = new SRTF( event_queue, avg_service_time );
         break;
       case 3:
-        scheduler = new RR( event_queue, quantum );
+        scheduler = new RR( event_queue, avg_service_time, quantum );
         break;
       default:
         break;
@@ -97,29 +93,25 @@ public class Simulator {
     return load;
   }
 
-  public void update_state(Event event) {
+  public void update_state( Event event ) {
     switch( event.get_name() ) {
       default:
         break;
     }
-    // TODO: Implement this
   }
 
   public void run() {
-    for( int i = 0; i < 10000; ++i ) {
-      Process new_process = new Process(0, 0);
-      this.scheduler = scheduler;
+    for( int i = 0; i < avg_arrival_rate; ++i ) {
+      Event new_event = new Event("PROCESS ARRIVAL", System.currentTimeMillis() / 1000, i);
+      event_queue.add( new_event );
+    }
+    
+    this.scheduler = scheduler;
 
-      switch( scheduler.get_algorithm() ) {
-        case "RR":
-          break;
-        case "SRTF":
-          break;
-        case "FCFS":
-          break;
-        default:
-          break;
-      }
+    while( !event_queue.isEmpty() ) {
+      Event next_event = event_queue.poll();
+      set_clock( next_event.get_time() );
+      scheduler.handle_event( next_event );
     }
 
     scheduler.display();

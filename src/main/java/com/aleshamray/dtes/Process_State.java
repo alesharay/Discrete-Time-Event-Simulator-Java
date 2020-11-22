@@ -1,6 +1,6 @@
 package com.aleshamray.dtes;
 
-enum State {
+public enum Process_State {
   NEW,
   RUNNING,
   WAITING,

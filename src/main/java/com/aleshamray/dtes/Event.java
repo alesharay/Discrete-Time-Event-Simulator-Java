@@ -5,30 +5,27 @@ package com.aleshamray.dtes;
  */
 public class Event {
   private String name;
-  private float time;
+  private long time;
+  private int id;
 
   /**
    * Event constructor
    */
-  public Event( float time ) {
-    name = "";
-    this.time = time;
-    // TODO: Implement This
+  public Event( String name, long time, int id ) {
+    set_name( name );
+    set_time( time );
+    set_id( id );
   }
 
   public void set_name( String name ) { this.name = name; }
 
   public String get_name() { return name; }
 
-  public void process_arrival() {
-    // TODO: Implement this
-  }
+  public void set_time ( long time ) { this.time = time; }
 
-  public void process_completion() {
-    // TODO: Implement this
-  }
+  public long get_time() { return time; }
 
-  public void timeslice_occurance() {
-    // TODO: Implement this
-  }
+  public void set_id( int id ) { this.id = id; }
+
+  public int get_id() { return id; }
 }
